@@ -1,15 +1,9 @@
-
 def buscar_numeros(matriz, id):          
-    encontrado = False
-    while encontrado == False:
-        for fila in matriz:
-            if fila[0] == id:
-                encontrado = True
-                
-        if encontrado == False:
-            print("El ID no fue encontrado. Por favor intente nuevamente.")
-
-    return encontrado
+    for fila in matriz:
+        if fila[0] == id:
+            return True
+        
+    return False
 
 def validar_numeros(mensaje):
     while True:

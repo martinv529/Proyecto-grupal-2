@@ -52,7 +52,6 @@ def eliminar_cliente(dicclientes):
     id = funciones.validacion.validar_numeros("Ingrese el ID del cliente que desea eliminar\n")
     cadena_id = str(id).zfill(2)
     
-
     while cadena_id not in dicclientes:
         id = funciones.validacion.validar_numeros("Ingrese nuevamente un ID valido\n")
         cadena_id = str(id).zfill(2)

@@ -75,15 +75,16 @@ def editar_producto(matriz):
             numeroCorrecto = False
             validacion = True
             while validacion:
-                
                 if numeroCorrecto == True:
                     validacion = False
                 else:
-                    valor = funciones.validacion.validar_numeros("Ingrese el ID del producto a modificar\n" )
-                    valor = str(valor).zfill(2)
-                    idProducto = funciones.validacion.buscar_numeros(matriz_productos, valor)
-                    if idProducto == True:
+                    idProducto = funciones.validacion.validar_numeros("Ingrese el ID del producto a modificar\n" )
+                    idProducto = str(idProducto).zfill(2)
+                    valor = funciones.validacion.buscar_numeros(matriz_productos, idProducto)
+                    if valor == True:
                         numeroCorrecto = True
+                    else:
+                        print(f"El ID {idProducto} no fue encontrado. Por favor intente de nuevo!")
             
 
             if cambio == 1:
@@ -108,26 +109,25 @@ def eliminar_producto(matriz):
     numeroCorrecto = False
     validacion = True
     while validacion:
-            
         if numeroCorrecto == True:
             validacion = False
         else:
-            valor = funciones.validacion.validar_numeros("Ingrese el ID del producto que desea eliminar \n")
-            valor = str(valor).zfill(2)
-            id_a_eliminar = funciones.validacion.buscar_numeros(matriz_productos, valor)
-            if id_a_eliminar == True:
+            id_a_eliminar = funciones.validacion.validar_numeros("Ingrese el ID del producto a modificar\n" )
+            id_a_eliminar = str(id_a_eliminar).zfill(2)
+            valor = funciones.validacion.buscar_numeros(matriz_productos, id_a_eliminar)
+            if valor == True:
                 numeroCorrecto = True
+            else:
+                print(f"El ID {id_a_eliminar} no fue encontrado. Por favor intente de nuevo!")
 
-    
-
-        posicion = -1
-        for i in range(len(matriz)):
-            if matriz[i][0] == valor:
-                posicion = i
+    posicion = -1
+    for i in range(len(matriz)):
+         if matriz[i][0] == id_a_eliminar:
+            posicion = i
                 
-        if posicion != -1:
-            matriz.pop(posicion)
-            print(f"El producto con ID N°{id_a_eliminar} fue eliminado correctamente.")
+    if posicion != -1:
+        matriz.pop(posicion)
+        print(f"El producto con ID N°{id_a_eliminar} fue eliminado correctamente.")
 
     return matriz
 
