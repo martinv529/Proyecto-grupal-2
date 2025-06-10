@@ -166,34 +166,37 @@ def mostrar_menu():
                         print("Solo se admiten numeros!\n")
                         continue
 
-            
 
                 if opcion == 1:
-                    print(f"{funciones.ventas.encabezado[0]:<10} | {funciones.ventas.encabezado[1]:<10} | {funciones.ventas.encabezado[2]:<15} | {funciones.ventas.encabezado[3]:<16} | {funciones.ventas.encabezado[4]:<5}")
+                    print(f"{funciones.ventas.encabezado[0]:<10} | {funciones.ventas.encabezado[1]:<10} | {funciones.ventas.encabezado[2]:<15} | {funciones.ventas.encabezado[3]:<15} | {funciones.ventas.encabezado[4]:<16} | {funciones.ventas.encabezado[5]:<5}")
                     for fila in funciones.ventas.matriz_ventas:
-                        IDnuevo, cantidadProductos, producto, importe, IDcliente = fila
-                        print(f"{IDnuevo:<10} | {cantidadProductos:<10} | {producto:<15} | ${importe:<15} | {IDcliente:<5}")
+                        IDnuevo, cantidadProductos, IDarticulo, producto, importe, IDcliente = fila
+                        nombre_corto = cortar(producto['producto'])
+                        print(f"{IDnuevo:<10} | {cantidadProductos:<10} | {IDarticulo:<15} | {nombre_corto:<15} | ${importe:<15} | {IDcliente:<5}")
 
                 elif opcion == 2:
                     funciones.ventas.matriz_ventas, funciones.ventas.ultimoID = funciones.ventas.agregar_venta(funciones.ventas.matriz_ventas, funciones.ventas.ultimoID)
-                    print(f"{funciones.ventas.encabezado[0]:<15} | {funciones.ventas.encabezado[1]:<20} | {funciones.ventas.encabezado[2]:>5} | {funciones.ventas.encabezado[3]:<15} | {funciones.ventas.encabezado[4]:>5}")
+                    print(f"{funciones.ventas.encabezado[0]:<10} | {funciones.ventas.encabezado[1]:<10} | {funciones.ventas.encabezado[2]:<15} | {funciones.ventas.encabezado[3]:<15} | {funciones.ventas.encabezado[4]:<16} | {funciones.ventas.encabezado[5]:<5}")
                     for fila in funciones.ventas.matriz_ventas:
-                            IDnuevo, cantidadProductos, producto, importe, IDcliente = fila
-                            print(f"{IDnuevo:<5} | {cantidadProductos:<10} | {producto:<15} | ${importe:<15} | {IDcliente:>10}")
+                        nombre_corto = cortar(producto['producto'])
+                        IDnuevo, cantidadProductos, IDarticulo, producto, importe, IDcliente = fila
+                        print(f"{IDnuevo:<5} | {cantidadProductos:<10} | {IDarticulo:<15} | {nombre_corto:<15} | ${importe:<15} | {IDcliente:>10}")
 
                 elif opcion == 3:
                     funciones.ventas.matriz_ventas=funciones.ventas.editar_venta(funciones.ventas.matriz_ventas)
-                    print(f"{funciones.ventas.encabezado[0]:<15} | {funciones.ventas.encabezado[1]:<20} | {funciones.ventas.encabezado[2]:>5} | {funciones.ventas.encabezado[3]:>5} | {funciones.ventas.encabezado[4]:>5}")
+                    print(f"{funciones.ventas.encabezado[0]:<10} | {funciones.ventas.encabezado[1]:<10} | {funciones.ventas.encabezado[2]:<15} | {funciones.ventas.encabezado[3]:<15} | {funciones.ventas.encabezado[4]:<16} | {funciones.ventas.encabezado[5]:<5}")
                     for fila in funciones.ventas.matriz_ventas:
-                            IDnuevo, cantidadProductos, producto, importe, IDcliente = fila
-                            print(f"{IDnuevo:<5} | {cantidadProductos:<10} | {producto:<15} | ${importe:<15} | {IDcliente:>10}")
+                        nombre_corto = cortar(producto['producto'])
+                        IDnuevo, cantidadProductos, IDarticulo, producto, importe, IDcliente = fila
+                        print(f"{IDnuevo:<10} | {cantidadProductos:<10} | {IDarticulo:<15} | {nombre_corto:<15} | ${importe:<15} | {IDcliente:<5}")
 
                 elif opcion == 4:
                     funciones.ventas.matriz_ventas = funciones.ventas.eliminar_venta(funciones.ventas.matriz_ventas)
-                    print(f"{funciones.ventas.encabezado[0]:<15} | {funciones.ventas.encabezado[1]:<20} | {funciones.ventas.encabezado[2]:>5} | {funciones.ventas.encabezado[3]:>5} | {funciones.ventas.encabezado[4]:>5}")
+                    print(f"{funciones.ventas.encabezado[0]:<10} | {funciones.ventas.encabezado[1]:<10} | {funciones.ventas.encabezado[2]:<15} | {funciones.ventas.encabezado[3]:<15} | {funciones.ventas.encabezado[4]:<16} | {funciones.ventas.encabezado[5]:<5}")
                     for fila in funciones.ventas.matriz_ventas:
-                            IDnuevo, cantidadProductos, producto, importe, IDcliente = fila
-                            print(f"{IDnuevo:<5} | {cantidadProductos:<10} | {producto:<15} | ${importe:<15} | {IDcliente:>10}")
+                        nombre_corto = cortar(producto['producto'])
+                        IDnuevo, cantidadProductos, IDarticulo, producto, importe, IDcliente = fila
+                        print(f"{IDnuevo:<10} | {cantidadProductos:<10} | {IDarticulo:<15} | {nombre_corto:<15} | ${importe:<15} | {IDcliente:<5}")
                             
                 elif opcion == 0:
                     opcion3 = False

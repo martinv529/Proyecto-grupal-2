@@ -67,16 +67,24 @@ def editar_producto(matriz):
             print("1- Nombre del producto")
             print("2- Precio del producto")
 
-            cambio=funciones.validacion.validar_numeros("Ingrese la columna que desea editar\n")
+            cambio = funciones.validacion.validar_numeros("Ingrese la columna que desea editar\n")
 
             while cambio > 2 or cambio < 1:
                 cambio = funciones.validacion.validar_numeros("Ingrese una opcion valida\n")
-
-            idProducto = funciones.validacion.validar_numeros("Ingrese el ID del producto\n")
-
-            for i in range(len(matriz)):
-                if matriz[i][0] == idProducto:
-                    break 
+            
+            numeroCorrecto = False
+            validacion = True
+            while validacion:
+                
+                if numeroCorrecto == True:
+                    validacion = False
+                else:
+                    valor = funciones.validacion.validar_numeros("Ingrese el ID del producto a modificar\n" )
+                    valor = str(valor).zfill(2)
+                    idProducto = funciones.validacion.buscar_numeros(matriz_productos, valor)
+                    if idProducto == True:
+                        numeroCorrecto = True
+            
 
             if cambio == 1:
                 matriz [int(idProducto)-1][cambio] = str(input("Ingrese el nombre del producto\n"))
@@ -85,37 +93,41 @@ def editar_producto(matriz):
                     coincide = re.fullmatch(r"[A-Za-zÁÉÍÓÚáéíóúÑñ ]+", matriz [int(idProducto)-1][cambio])
                     if coincide == None:
                         print("Solo se permiten el ingreso de letras")
-                        matriz [int(idProducto)-1][cambio] = input("Ingrese nuevamente el nombre:\n").strip()
+                        matriz [int(idProducto)+1][cambio] = input("Ingrese nuevamente el nombre:\n").strip()
                     else:
                         break
             
             elif cambio == 2:
-                matriz [int(idProducto)-1][cambio] = funciones.validacion.validar_numeros("Ingrese el precio\n")
-                str(matriz [int(idProducto)-1][cambio])
-                matriz [int(idProducto)-1][cambio] += ".00"
+                importe = funciones.validacion.validar_numeros("Ingrese el precio\n")
+                matriz [int(idProducto)-1][cambio] = str(importe) + ".00"
 
     return matriz
 
-
 def eliminar_producto(matriz):
-    while True:
-        id_a_eliminar = funciones.validacion.validar_numeros("Ingrese el ID del producto que desea eliminar \n")
-        id_a_eliminar = str(id_a_eliminar) 
+    
+    numeroCorrecto = False
+    validacion = True
+    while validacion:
+            
+        if numeroCorrecto == True:
+            validacion = False
+        else:
+            valor = funciones.validacion.validar_numeros("Ingrese el ID del producto que desea eliminar \n")
+            valor = str(valor).zfill(2)
+            id_a_eliminar = funciones.validacion.buscar_numeros(matriz_productos, valor)
+            if id_a_eliminar == True:
+                numeroCorrecto = True
+
+    
 
         posicion = -1
         for i in range(len(matriz)):
-            if matriz[i][0] == id_a_eliminar:
+            if matriz[i][0] == valor:
                 posicion = i
-                break 
-
+                
         if posicion != -1:
             matriz.pop(posicion)
             print(f"El producto con ID N°{id_a_eliminar} fue eliminado correctamente.")
-            break
-        else:
-            print("")
-            print(f"No se encontró ningún producto con ID N°{id_a_eliminar}")
-            print("Por favor, intenta de nuevo")
 
     return matriz
 

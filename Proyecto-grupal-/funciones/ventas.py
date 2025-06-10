@@ -13,6 +13,8 @@ matriz_ventas = [
 
 ultimoID = 5
 
+multiplicar = lambda x, y: x * y
+
 def agregar_venta(matriz, IDs):
 
     cantidad = funciones.validacion.validar_numeros("Cuantos registros de venta desea agregar?\n")
@@ -27,7 +29,7 @@ def agregar_venta(matriz, IDs):
             
             idNuevo = str(int(IDs) + 1).zfill(3)
 
-            cantidadProductos = funciones.validacion.validar_numeros(f"Ingrese la cantidad de productos de la venta N°{idNuevo}\n")
+            cantidadProductos = int(funciones.validacion.validar_numeros(f"Ingrese la cantidad de productos de la venta N°{idNuevo}\n"))
             producto = input(f"Ingrese el nombre del artículo vendido N°{idNuevo}\n")
 
             while True:
@@ -38,11 +40,11 @@ def agregar_venta(matriz, IDs):
                 else:
                     break
 
-            precio = funciones.validacion.validar_numeros(f"Ingrese el précio del producto N°{idNuevo}\n")
+            precio = int(funciones.validacion.validar_numeros(f"Ingrese el précio del producto N°{idNuevo}\n"))
             IDcliente = funciones.validacion.validar_numeros(f"Ingrese el ID del comprador de la venta N°{idNuevo}\n")
             IDcliente = str(IDcliente).zfill(2)
 
-            importe = str(int(precio) * int(cantidadProductos))
+            importe = str(multiplicar(precio, cantidadProductos))
             importe += ".00"
             
             datos = [idNuevo, cantidadProductos, producto, importe, IDcliente]
