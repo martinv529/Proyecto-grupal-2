@@ -2,4 +2,4 @@
 02;mesa;30000.00
 03;escritorio;25000.00
 04;sillon;50000.00
-05;mesa de luz;20000.00
+05;mesa de luz;20000.00

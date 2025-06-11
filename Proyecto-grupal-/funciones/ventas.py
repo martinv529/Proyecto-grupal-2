@@ -4,13 +4,22 @@ import funciones.articulos
 
 encabezado = ["IDventa", "cantidad", "IDarticulo", "articulo", "importe", "IDcliente"] 
 
-matriz_ventas = [
-    ["001", "4", "01", "silla", "40000.00", "03"],
-    ["002", "2", "05", "mesa de luz", "40000.00", "02"],
-    ["003", "5", "03", "escritorios", "125000.00", "05"],
-    ["004", "1", "02", "mesa", "30000.00", "01"],
-    ["005", "3", "04", "sillon","150000.00", "04"]
-    ]
+def txt_a_matriz(archivo, modo):
+    try:
+        matriz = []
+        arch = open(archivo, modo, encoding="UTF-8")
+        linea = arch.readline().strip()
+        while linea:
+            matriz.append(linea.split(";"))
+            linea = arch.readline().strip()
+    except OSError:
+        print("No se pudo leer el archivo")
+    finally:
+        try:
+            arch.close()
+        except:
+            print("No se pudo cerrar el archivo")
+    return matriz
 
 ultimoID = 5
 
@@ -39,7 +48,7 @@ def agregar_venta(matriz_venta, IDs, matriz_producto):
                     validacion = False
                 else:
                     IDarticulo = funciones.validacion.validar_numeros(f"Ingrese el N° de ID del artículo de la venta N°{idNuevo}\n")
-                    IDarticulo = str(IDarticulo).zfill(3)
+                    IDarticulo = str(IDarticulo).zfill(2)
                     valor = funciones.validacion.buscar_numeros(matriz_producto, IDarticulo)
                     if valor == True:
                         numeroCorrecto = True
@@ -166,7 +175,7 @@ def eliminar_venta(matriz):
     return matriz
 
         
-
+matriz_ventas = txt_a_matriz("Proyecto-grupal-/funciones/ventas.txt","r")
     
 
 if __name__ == "__main__":

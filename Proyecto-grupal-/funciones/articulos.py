@@ -1,13 +1,22 @@
 import re
 import funciones.validacion
 
-matriz_productos =[
-    ["01", "silla", "10000.00"], 
-    ["02","mesa","30000.00"],
-    ["03","escritorio","25000.00"],
-    ["04","sillon","50000.00"],
-    ["05","mesa de luz","20000.00"]
-    ]
+def txt_a_matriz(archivo, modo):
+    try:
+        matriz = []
+        arch = open(archivo, modo, encoding="UTF-8")
+        linea = arch.readline().strip()
+        while linea:
+            matriz.append(linea.split(";"))
+            linea = arch.readline().strip()
+    except OSError:
+        print("No se pudo leer el archivo")
+    finally:
+        try:
+            arch.close()
+        except:
+            print("No se pudo cerrar el archivo")
+    return matriz
 
 ultimoID = 5
 
@@ -130,6 +139,8 @@ def eliminar_producto(matriz):
         print(f"El producto con ID N°{id_a_eliminar} fue eliminado correctamente.")
 
     return matriz
+
+matriz_productos = txt_a_matriz("Proyecto-grupal-/funciones/productos.txt","r")
 
         
 if __name__ == "__main__":
